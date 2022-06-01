@@ -1,12 +1,12 @@
 {
-  "name": "Epiron-Desktop",
-  "version": "1.0.0",
+  "name": "electron-update",
+  "version": "0.1.0",
   "description": "Epiron",
   "main": "src/index.js",
   "scripts": {
     "dev": "electron ./src/index.js",
     "build:prod": "electron-builder build",
-    "build:publish": "set GH_TOKEN=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 && electron-builder -p always"
+    "build:publish": "electron-builder --win -p always"
   },
   "keywords": [],
   "author": {
@@ -24,33 +24,14 @@
     "electron": "^18.0.3"
   },
   "build": {
+    "appId": "electron.update.ricoso",
     "afterSign": "./build/notarize.js",
     "publish": [
       {
         "provider": "github",
-        "owner": "juanburns",
-        "repo": "electronProject"
+        "owner": "francodder",
+        "repo": "electron-update"
       }
-    ],
-    "directories": {
-      "output": "../Epiron-Desarrollo-Windows"
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ],
-      "defaultArch": "ia32",
-      "verifyUpdateCodeSignature": false
-    },
-    "linux": {
-      "icon": "src/assets/Epiron_App.png",
-      "target": [
-        "AppImage",
-        "deb"
-      ]
-    },
-    "includeSubNodeModules": true,
-    "appId": "Epiron-Desktop",
-    "icon": "src/assets/Epiron_App.png"
+    ]
   }
 }
